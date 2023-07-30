@@ -19,6 +19,7 @@ public class CompraRest {
      *
      * @return - la compra registrada en el sistema;
      *
+     * Comentario: genera el ID automaticamente;
       --------------------------------------------------------------------------------------------------------*/
     @PostMapping("createCompra")
     public Compra createCompra(@RequestBody Compra compra) {

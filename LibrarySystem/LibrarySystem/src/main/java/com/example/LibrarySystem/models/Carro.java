@@ -9,10 +9,10 @@ public class Carro {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     @Column(name = "id_carro")
-    private Integer id;
+    private long id;
 
     @Column(name = "n_transaccion")
-    private Long n_transaccion;
+    private long n_transaccion;
 
     @ManyToOne
     @JoinColumn(name = "id_usuario")
@@ -29,7 +29,8 @@ public class Carro {
     public Carro(){
 
     }
-    public Carro(Long n_transaccion, Usuario usuario, Integer precioTotal, Integer cantidad, Boolean boolStock) {
+    public Carro(long id, long n_transaccion, Usuario usuario, Integer precioTotal, Integer cantidad, Boolean boolStock) {
+        this.id = id;
         this.n_transaccion = n_transaccion;
         this.usuario = usuario;
         this.precioTotal = precioTotal;
@@ -37,19 +38,21 @@ public class Carro {
         this.boolStock = boolStock;
     }
 
-    public Integer getIdCarro() {
+    //GETTERS Y SETTERS
+
+    public long getIdCarro() {
         return id;
     }
 
-    public void setIdCarro(Integer idCarro) {
-        this.id = idCarro;
+    public void setId(long id) {
+        this.id = id;
     }
 
-    public Long getN_transaccion() {
+    public long getN_transaccion() {
         return n_transaccion;
     }
 
-    public void setN_transaccion(Long n_transaccion) {
+    public void setN_transaccion(long n_transaccion) {
         this.n_transaccion = n_transaccion;
     }
 

@@ -9,7 +9,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.query.FluentQuery;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
@@ -18,6 +20,62 @@ import java.util.function.Function;
 public class UsuarioService implements UsuarioRepository{
     @Autowired
     private UsuarioRepository usuarioRepository;
+
+
+    /*--------------------------------------------------------------------------------------------------------
+     * createUser: metodo que guarda un nuevo usuario en la base de datos;
+     *
+     * @param user - un objeto de tipo Usuario que contiene los datos del usuario a guardar;
+     * * @return - el suario creado y registrado;
+     *
+      --------------------------------------------------------------------------------------------------------*/
+    public Usuario createUser(Usuario user){
+        return usuarioRepository.save(user);
+    }
+
+    /*--------------------------------------------------------------------------------------------------------
+     * getUsuarioByid: metodo que obtiene un usuario según su id;
+     *
+     * @param id_usuario - el id del usuario en la base de datos;
+     * @return - el usuario correspondiente al id especificado;
+     --------------------------------------------------------------------------------------------------------*/
+    @Override
+    public Usuario getUsuarioByid(long id_usuario){
+        return usuarioRepository.getUsuarioByid(id_usuario);
+    }
+
+
+    /*--------------------------------------------------------------------------------------------------------
+     * updateUser: metodo que actualiza los datos de un user del mismo id;
+     *
+     * @param usuarioUpdate - el objeto con el id y los datos nuevos del usuario;
+     * @return - el usuario actualizado;
+     --------------------------------------------------------------------------------------------------------*/
+    public Usuario updateUser(Usuario usuarioUpdate) {
+        Usuario existente = usuarioRepository.findById(usuarioUpdate.getId_usuario()).orElse(null);
+        if (existente != null) {
+            existente.setFecha_nacimiento(usuarioUpdate.getFecha_nacimiento());
+            existente.setNombre(usuarioUpdate.getNombre());
+            existente.setApellido(usuarioUpdate.getApellido());
+            existente.setContraseña(usuarioUpdate.getContraseña());
+            existente.setEmail(usuarioUpdate.getEmail());
+            return usuarioRepository.save(existente);
+        } else {
+            return null;
+        }
+    }
+
+    /*--------------------------------------------------------------------------------------------------------
+     * deleteByIdUsuario: metodo que elimina un usuario por su id;
+     *
+     * @param id - id del usuario a eliminar;
+     *
+     --------------------------------------------------------------------------------------------------------*/
+    public void deleteByIdUsuario(Long id) {
+        usuarioRepository.deleteById(id);
+    }
+
+
 
     @Override
     public void flush() {
@@ -43,14 +101,8 @@ public class UsuarioService implements UsuarioRepository{
     }
 
     @Override
-    public void deleteAllByIdInBatch(Iterable<Long> longs) {
+    public void deleteAllByIdInBatch(Iterable<Long> longs) {}
 
-    }
-
-    @Override
-    public Usuario getUsuarioByid(long id_usuario){
-        return usuarioRepository.getUsuarioByid(id_usuario);
-    }
 
     @Override
     public void deleteAllInBatch() {

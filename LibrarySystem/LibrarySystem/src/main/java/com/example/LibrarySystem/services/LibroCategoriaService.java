@@ -19,6 +19,12 @@ public class LibroCategoriaService implements LibroCategoriaRepository{
     @Autowired
     private LibroCategoriaRepository libroCategoriaRepository;
 
+    //hacer función para otener todas las libro_categoria según id_libro_categoria
+    @Override
+    public List<LibroCategoria> findByIdLibroCategoria(Long id_libro_categoria) {
+        return libroCategoriaRepository.findByIdLibroCategoria(id_libro_categoria);
+    }
+
     @Override
     public void flush() {
 

@@ -52,7 +52,7 @@ public class UsuarioService implements UsuarioRepository{
      * @return - el usuario actualizado;
      --------------------------------------------------------------------------------------------------------*/
     public Usuario updateUser(Usuario usuarioUpdate) {
-        Usuario existente = usuarioRepository.findById(usuarioUpdate.getId_usuario()).orElse(null);
+        Usuario existente = usuarioRepository.findById(usuarioUpdate.getId()).orElse(null);
         if (existente != null) {
             existente.setFecha_nacimiento(usuarioUpdate.getFecha_nacimiento());
             existente.setNombre(usuarioUpdate.getNombre());

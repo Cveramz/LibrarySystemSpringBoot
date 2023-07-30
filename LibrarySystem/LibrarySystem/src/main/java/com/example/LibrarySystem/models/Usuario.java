@@ -10,7 +10,8 @@ public class Usuario {
 
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private Long id_usuario;
+        @Column(name = "id_usuario")
+        private Long id;
 
         @Column(name = "fecha_nacimiento")
         private LocalDate fecha_nacimiento;
@@ -37,11 +38,11 @@ public class Usuario {
     }
 
     public Long getId_usuario() {
-        return id_usuario;
+        return id;
     }
 
     public void setId_usuario(Long id_usuario) {
-        this.id_usuario = id_usuario;
+        this.id = id_usuario;
     }
 
     public LocalDate getFecha_nacimiento() {

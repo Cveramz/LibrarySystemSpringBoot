@@ -48,6 +48,11 @@ public class UsuarioService implements UsuarioRepository{
     }
 
     @Override
+    public Usuario getUsuarioByid(long id_usuario){
+        return usuarioRepository.getUsuarioByid(id_usuario);
+    }
+
+    @Override
     public void deleteAllInBatch() {
 
     }
@@ -58,9 +63,8 @@ public class UsuarioService implements UsuarioRepository{
     }
 
     @Override
-    public Usuario getById(Long aLong) {
-        return null;
-    }
+    public Usuario getById(Long aLong){return null;}
+
 
     @Override
     public Usuario getReferenceById(Long aLong) {

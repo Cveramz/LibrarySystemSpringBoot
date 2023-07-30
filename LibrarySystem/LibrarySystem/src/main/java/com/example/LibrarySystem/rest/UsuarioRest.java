@@ -4,9 +4,7 @@ import com.example.LibrarySystem.models.Usuario;
 import com.example.LibrarySystem.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,5 +17,10 @@ public class UsuarioRest {
   @GetMapping
     private ResponseEntity<List<Usuario>> getAllUsuarios(){
         return ResponseEntity.ok(usuarioService.findAll());
+    }
+
+    @GetMapping("getById")
+    private Usuario getUsuarioByid(@RequestParam("id_usuario") long id_usuario){
+        return usuarioService.getUsuarioByid(id_usuario);
     }
 }

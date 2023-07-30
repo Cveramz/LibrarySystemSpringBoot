@@ -20,25 +20,45 @@ public class LibroCategoriaService implements LibroCategoriaRepository{
     @Autowired
     private LibroCategoriaRepository libroCategoriaRepository;
 
-    //hacer función para otener todas las libro_categoria según id_libro_categoria
+    /*--------------------------------------------------------------------------------------------------------
+        * findByIdLibroCategoria: Busca una tupla de LibroCategoria por su id_libro_categoria;
+        *
+        * @param id_libro_categoria - id de la tupla de LibroCategoria;
+        * @return - Tupla de LibroCategoria;
+     */
     @Override
     public List<LibroCategoria> findByIdLibroCategoria(Long id_libro_categoria) {
         return libroCategoriaRepository.findByIdLibroCategoria(id_libro_categoria);
     }
 
-    //hacer función para otener todas las libro_categoria según id_categoria
+    /*--------------------------------------------------------------------------------------------------------
+        * findByIdCategoria: Busca una tupla de LibroCategoria por su id_categoria;
+        *
+        * @param id_categoria - id de la tupla de LibroCategoria;
+        * @return - Tupla de LibroCategoria;
+     */
     @Override
     public List<LibroCategoria> findByIdCategoria(Long id_categoria) {
         return libroCategoriaRepository.findByIdCategoria(id_categoria);
     }
 
-    //hacer función para otener todas las libro_categoria según isbn
+    /*--------------------------------------------------------------------------------------------------------
+        * findByIsbn: Busca una tupla de LibroCategoria por su isbn;
+        *
+        * @param isbn - isbn de la tupla de LibroCategoria;
+        * @return - Tupla de LibroCategoria;
+     */
     @Override
     public List<LibroCategoria> findByIsbn(String isbn) {
         return libroCategoriaRepository.findByIsbn(isbn);
     }
 
-    // Agregar una nueva tupla de LibroCategoria
+    /*--------------------------------------------------------------------------------------------------------
+        * findByNombreCategoria: Busca una tupla de LibroCategoria por su nombre_categoria;
+        *
+        * @param nombre_categoria - nombre_categoria de la tupla de LibroCategoria;
+        * @return - Tupla de LibroCategoria;
+     */
     @Override
     public LibroCategoria agregarLibroCategoria(LibroCategoria libroCategoria) {
         return libroCategoriaRepository.save(libroCategoria);

@@ -1,7 +1,9 @@
 package com.example.LibrarySystem.services;
 
 import com.example.LibrarySystem.models.Rol;
+import com.example.LibrarySystem.models.Usuario;
 import com.example.LibrarySystem.repositories.RolRepository;
+import com.example.LibrarySystem.repositories.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
@@ -18,7 +20,8 @@ import java.util.function.Function;
 public class RolService implements RolRepository{
     @Autowired
     private RolRepository rolRepository;
-
+    @Autowired
+    private UsuarioRepository usuarioRepository;
     @Override
     public void flush() {
 
@@ -26,6 +29,26 @@ public class RolService implements RolRepository{
     @Override
     public List<Rol> findAll() {
         return rolRepository.findAll();
+    }
+    public Optional<Rol> findRolById(Long idRol) {
+        return rolRepository.findById(idRol);
+    }
+
+    public void asignarRolAUsuario(Usuario usuario, String nombreRol) {
+        Rol rol = new Rol(usuario, nombreRol);
+        rolRepository.save(rol);
+    }
+    public void editarRolDeUsuario(Long usuarioId, String nuevoRol) {
+        Rol rol = rolRepository.findById(usuarioId).orElse(null);
+
+        if (rol != null) {
+            rol.setNombreRol(nuevoRol);
+            rolRepository.save(rol);
+        }
+    }
+
+    public void eliminarRolPorId(Long rolId) {
+        rolRepository.deleteById(rolId);
     }
     @Override
     public <S extends Rol> S saveAndFlush(S entity) {
@@ -138,6 +161,7 @@ public class RolService implements RolRepository{
     public void deleteById(Long aLong) {
 
     }
+
 
     @Override
     public void delete(Rol entity) {

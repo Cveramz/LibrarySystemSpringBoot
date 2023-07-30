@@ -27,7 +27,14 @@ public class PrivilegioService implements PrivilegioRepository{
     public List<Privilegio> findAll() {
         return privilegioRepository.findAll();
     }
+    public Privilegio obtenerPrivilegioPorId(Long idPrivilegio) {
+        return privilegioRepository.findById(idPrivilegio).orElse(null);
+    }
 
+    public Privilegio crearNuevoPrivilegio(String nombrePrivilegio) {
+        Privilegio nuevoPrivilegio = new Privilegio(nombrePrivilegio);
+        return privilegioRepository.save(nuevoPrivilegio);
+    }
     @Override
     public <S extends Privilegio> S saveAndFlush(S entity) {
         return null;

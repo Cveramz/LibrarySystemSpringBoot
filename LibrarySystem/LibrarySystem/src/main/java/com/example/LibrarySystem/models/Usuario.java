@@ -37,12 +37,12 @@ public class Usuario {
         this.email = email;
     }
 
-    public Long getId_usuario() {
+    public Long getId() {
         return id;
     }
 
-    public void setId_usuario(Long id_usuario) {
-        this.id = id_usuario;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public LocalDate getFecha_nacimiento() {
@@ -84,4 +84,5 @@ public class Usuario {
     public void setEmail(String email) {
         this.email = email;
     }
+
 }

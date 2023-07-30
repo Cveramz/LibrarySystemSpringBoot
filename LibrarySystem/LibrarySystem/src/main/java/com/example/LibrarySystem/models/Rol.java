@@ -14,11 +14,11 @@ public class Rol {
     private Usuario id_usuario;
 
     @Column(name = "nombre")
-    private String nombre;
+    private String nombreRol;
     public Rol(){}
-    public Rol(Usuario id_usuario, String nombre) {
+    public Rol(Usuario id_usuario, String nombreRol) {
         this.id_usuario = id_usuario;
-        this.nombre = nombre;
+        this.nombreRol = nombreRol;
     }
 
     public Integer getId_rol() {
@@ -37,11 +37,12 @@ public class Rol {
         this.id_usuario = id_usuario;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getNombreRol() {
+        return nombreRol;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNombreRol(String nombreRol) {
+        this.nombreRol = nombreRol;
     }
+
 }

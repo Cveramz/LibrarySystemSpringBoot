@@ -1,5 +1,7 @@
 package com.example.LibrarySystem.services;
 
+import com.example.LibrarySystem.models.Libro;
+import com.example.LibrarySystem.models.Usuario;
 import com.example.LibrarySystem.models.UsuarioLibroFavorito;
 import com.example.LibrarySystem.repositories.UsuarioLibroFavoritoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,14 @@ import java.util.function.Function;
 public class UsuarioLibroFavoritoService implements UsuarioLibroFavoritoRepository{
     @Autowired
     private UsuarioLibroFavoritoRepository usuarioLibroFavoritoRepository;
+
+    public UsuarioLibroFavorito addUserLibFav(Usuario user, Libro lib){
+        UsuarioLibroFavorito neoUserLibFav = new UsuarioLibroFavorito();
+        neoUserLibFav.setUsuario(user);
+        neoUserLibFav.setLibro(lib);
+        return usuarioLibroFavoritoRepository.save(neoUserLibFav);
+
+    }
 
     @Override
     public void flush() {
@@ -58,8 +68,8 @@ public class UsuarioLibroFavoritoService implements UsuarioLibroFavoritoReposito
     }
 
     @Override
-    public UsuarioLibroFavorito getById(Long aLong) {
-        return null;
+    public UsuarioLibroFavorito getById(Long id) {
+        return usuarioLibroFavoritoRepository.findById(id).get();
     }
 
     @Override

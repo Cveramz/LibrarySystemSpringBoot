@@ -11,6 +11,7 @@ import org.springframework.data.repository.query.FluentQuery;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.function.Function;
 
@@ -24,6 +25,25 @@ public class LibroCategoriaService implements LibroCategoriaRepository{
     public List<LibroCategoria> findByIdLibroCategoria(Long id_libro_categoria) {
         return libroCategoriaRepository.findByIdLibroCategoria(id_libro_categoria);
     }
+
+    //hacer función para otener todas las libro_categoria según id_categoria
+    @Override
+    public List<LibroCategoria> findByIdCategoria(Long id_categoria) {
+        return libroCategoriaRepository.findByIdCategoria(id_categoria);
+    }
+
+    //hacer función para otener todas las libro_categoria según isbn
+    @Override
+    public List<LibroCategoria> findByIsbn(String isbn) {
+        return libroCategoriaRepository.findByIsbn(isbn);
+    }
+
+    // Agregar una nueva tupla de LibroCategoria
+    @Override
+    public LibroCategoria agregarLibroCategoria(LibroCategoria libroCategoria) {
+        return libroCategoriaRepository.save(libroCategoria);
+    }
+
 
     @Override
     public void flush() {
@@ -174,4 +194,6 @@ public class LibroCategoriaService implements LibroCategoriaRepository{
     public Page<LibroCategoria> findAll(Pageable pageable) {
         return null;
     }
+
+
 }

@@ -7,8 +7,9 @@ import jakarta.persistence.*;
 public class Carro {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     @Column(name = "id_carro")
-    private Integer idCarro;
+    private Integer id;
 
     @Column(name = "n_transaccion")
     private Long n_transaccion;
@@ -37,11 +38,11 @@ public class Carro {
     }
 
     public Integer getIdCarro() {
-        return idCarro;
+        return id;
     }
 
     public void setIdCarro(Integer idCarro) {
-        this.idCarro = idCarro;
+        this.id = idCarro;
     }
 
     public Long getN_transaccion() {

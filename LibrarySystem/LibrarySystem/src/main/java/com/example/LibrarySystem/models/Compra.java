@@ -10,8 +10,9 @@ public class Compra {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     @Column(name = "n_transaccion")
-    private Integer n_Transaccion;
+    private long n_Transaccion;
 
     @ManyToOne
     @JoinColumn(name = "id_mediopago")
@@ -23,13 +24,14 @@ public class Compra {
     @Column(name = "fecha")
     private LocalDate fecha;
     public Compra(){}
-    public Compra(MedioPago medioPago, Integer totalPago, LocalDate fecha) {
+    public Compra(long n_transaccion, MedioPago medioPago, Integer totalPago, LocalDate fecha) {
+        this.n_Transaccion = n_transaccion;
         this.medioPago = medioPago;
         this.totalPago = totalPago;
         this.fecha = fecha;
     }
 
-    public Integer getN_Transaccion() {
+    public long getN_Transaccion() {
         return n_Transaccion;
     }
 

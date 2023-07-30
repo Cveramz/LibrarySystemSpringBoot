@@ -1,6 +1,7 @@
 package com.example.LibrarySystem.services;
 
 import com.example.LibrarySystem.models.Compra;
+import com.example.LibrarySystem.models.Usuario;
 import com.example.LibrarySystem.repositories.CompraRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -18,6 +19,61 @@ import java.util.function.Function;
 public class CompraService implements CompraRepository{
     @Autowired
     private CompraRepository compraRepository;
+
+
+    /*--------------------------------------------------------------------------------------------------------
+     * createCompra: metodo que guarda una nueva compra en la base de datos;
+     *
+     * @param compra - un objeto de tipo Compra que contiene los datos de la compra a guardar;
+     *
+     * * @return - la compra registrada;
+      --------------------------------------------------------------------------------------------------------*/
+    public Compra createCompra(Compra compra){
+        return compraRepository.save(compra);
+    }
+
+    /*--------------------------------------------------------------------------------------------------------
+     * getCompraByNTransaccion: metodo que obtiene una compra por su numero de transaccion;
+     *
+     * @param n_transaccion - el numero de transaccion de la compra en la base de datos;
+     *
+     * @return - la compra correspondiente al numero de transaccion;
+     --------------------------------------------------------------------------------------------------------*/
+    public Compra getCompraByNTransaccion(long n_transaccion) {
+        return compraRepository.findById(n_transaccion).orElse(null);
+    }
+
+    /*--------------------------------------------------------------------------------------------------------
+     * updateCompra: metodo que actualiza los datos de una compra segun numero de transaccion;
+     *
+     * @param compraUpdate - el objeto con el numero de transaccion y los datos actualizados;
+     *
+     * @return - la compra actualizada;
+     --------------------------------------------------------------------------------------------------------*/
+    public Compra updateCompra(Compra compraUpdate) {
+        Compra existente = compraRepository.findById(compraUpdate.getN_Transaccion()).orElse(null);
+        if (existente != null) {
+            existente.setMedioPago(compraUpdate.getMedioPago());
+            existente.setTotalPago(compraUpdate.getTotalPago());
+            existente.setFecha(compraUpdate.getFecha());
+            return compraRepository.save(existente);
+        } else {
+            return null;
+        }
+    }
+
+
+    /*--------------------------------------------------------------------------------------------------------
+     * deleteByIdCompra: metodo que elimina una compra segun numero de transaccion;
+     *
+     * @param n_transaccion - numero de transaccion de la compra;
+     *
+     --------------------------------------------------------------------------------------------------------*/
+    public void deleteByIdCompra(long n_transaccion) {
+        compraRepository.deleteById(n_transaccion);
+    }
+
+
 
     @Override
     public void flush() {

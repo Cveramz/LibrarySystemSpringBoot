@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 @Table(name="rol_privilegio")
 public class RolPrivilegio {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id_rol_privilegio;
     @ManyToOne
     @JoinColumn(name="id_rol")

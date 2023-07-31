@@ -1,7 +1,12 @@
 package com.example.LibrarySystem.services;
 
+import com.example.LibrarySystem.models.Privilegio;
+import com.example.LibrarySystem.models.Rol;
 import com.example.LibrarySystem.models.RolPrivilegio;
+import com.example.LibrarySystem.repositories.PrivilegioRepository;
 import com.example.LibrarySystem.repositories.RolPrivilegioRepository;
+import com.example.LibrarySystem.repositories.RolRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
@@ -18,7 +23,11 @@ import java.util.function.Function;
 public class RolPrivilegioService implements RolPrivilegioRepository{
     @Autowired
     private RolPrivilegioRepository rolPrivilegioRepository;
+    @Autowired
+    private RolRepository rolRepository;
 
+    @Autowired
+    private PrivilegioRepository privilegioRepository;
     @Override
     public void flush() {
 
@@ -26,6 +35,30 @@ public class RolPrivilegioService implements RolPrivilegioRepository{
     @Override
     public List<RolPrivilegio> findAll() {
         return rolPrivilegioRepository.findAll();
+    }
+
+    public RolPrivilegio obtenerRolPrivilegioPorId(Long idRolPrivilegio) {
+        return rolPrivilegioRepository.findById(idRolPrivilegio).orElse(null);
+    }
+
+    public void agregarRolPrivilegio(Rol rol, Privilegio privilegio) {
+        RolPrivilegio rolPrivilegio = new RolPrivilegio(rol, privilegio);
+        rolPrivilegioRepository.save(rolPrivilegio);
+    }
+    public void editarRolPrivilegio(Long idRol, Integer idPrivilegioNuevo) {
+        RolPrivilegio rolPrivilegio = rolPrivilegioRepository.findById(idRol).orElse(null);
+        if (rolPrivilegio != null) {
+            Privilegio privilegioNuevo = new Privilegio();
+            privilegioNuevo.setId_privilegio(idPrivilegioNuevo);
+            rolPrivilegio.setId_privilegio(privilegioNuevo);
+            rolPrivilegioRepository.save(rolPrivilegio);
+        }
+    }
+    public void eliminarRolPrivilegio(Long id) {
+        RolPrivilegio rolPrivilegio = rolPrivilegioRepository.findById(id).orElse(null);
+        if (rolPrivilegio != null) {
+            rolPrivilegioRepository.delete(rolPrivilegio);
+        }
     }
     @Override
     public <S extends RolPrivilegio> S saveAndFlush(S entity) {

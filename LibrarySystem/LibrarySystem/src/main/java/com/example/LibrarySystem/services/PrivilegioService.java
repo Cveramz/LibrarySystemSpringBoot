@@ -1,6 +1,7 @@
 package com.example.LibrarySystem.services;
 
 import com.example.LibrarySystem.models.Privilegio;
+import com.example.LibrarySystem.models.Rol;
 import com.example.LibrarySystem.repositories.PrivilegioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -31,10 +32,25 @@ public class PrivilegioService implements PrivilegioRepository{
         return privilegioRepository.findById(idPrivilegio).orElse(null);
     }
 
-    public Privilegio crearNuevoPrivilegio(String nombrePrivilegio) {
+    public Privilegio agregarPrivilegio(String nombrePrivilegio) {
         Privilegio nuevoPrivilegio = new Privilegio(nombrePrivilegio);
         return privilegioRepository.save(nuevoPrivilegio);
     }
+
+    public void editarPrivilegio(Long id, String nuevoPirvilegio) {
+        Privilegio privilegio = privilegioRepository.findById(id).orElse(null);
+        if (privilegio != null) {
+            privilegio.setNombre_privilegio(nuevoPirvilegio);
+            privilegioRepository.save(privilegio);
+        }
+    }
+    public void eliminarPrivilegio(Long idPrivilegio) {
+        Privilegio privilegio = privilegioRepository.findById(idPrivilegio).orElse(null);
+        if (privilegio != null) {
+            privilegioRepository.delete(privilegio);
+        }
+    }
+
     @Override
     public <S extends Privilegio> S saveAndFlush(S entity) {
         return null;

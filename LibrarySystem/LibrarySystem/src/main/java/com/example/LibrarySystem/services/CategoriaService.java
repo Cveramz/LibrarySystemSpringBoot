@@ -13,19 +13,60 @@ public class CategoriaService {
     @Autowired
     private CategoriaRepository categoriaRepository;
 
+    /*--------------------------------------------------------------------------------------------------------
+     * findAll: Obtiene todas las categorías
+     *
+     * @param - Nulo
+     * @return - List<Categoria>
+      --------------------------------------------------------------------------------------------------------*/
     public List<Categoria> findAll() {
         return categoriaRepository.findAll();
     }
 
-    public Optional<Categoria> findById(Long id) {
-        return categoriaRepository.findById(id);
+    /*--------------------------------------------------------------------------------------------------------
+     * findByIdCategoria: Obtiene una categoría por su id
+     *
+     * @param - Long idCategoria
+     * @return - Optional<Categoria>
+      --------------------------------------------------------------------------------------------------------*/
+    public Optional<Categoria> findByIdCategoria(Long idCategoria) {
+        return categoriaRepository.findByIdCategoria(idCategoria);
     }
 
+    /*--------------------------------------------------------------------------------------------------------
+     * save: Crea una nueva categoría
+     *
+     * @param - Categoria categoria
+     * @return - Categoria
+     *
+     * Ejemplo de JSON para crear una categoría:
+     *   {
+     *       "tipo": "Nueva categoría"
+     *   }
+     --------------------------------------------------------------------------------------------------------*/
     public Categoria save(Categoria categoria) {
         return categoriaRepository.save(categoria);
     }
 
+    /*--------------------------------------------------------------------------------------------------------
+     * deleteById: Elimina una categoría por su id
+     *
+     * @param - Long id
+     * @return - Nulo
+      --------------------------------------------------------------------------------------------------------*/
     public void deleteById(Long id) {
         categoriaRepository.deleteById(id);
     }
+
+    /*--------------------------------------------------------------------------------------------------------
+     * findByTipo: Obtiene una categoría por su tipo
+     *
+     * @param - String tipo
+     * @return - List<Categoria>
+      --------------------------------------------------------------------------------------------------------*/
+    public List<Categoria> findByTipo(String tipo) {
+        return categoriaRepository.findByTipo(tipo);
+    }
+
+
 }

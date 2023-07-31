@@ -1,6 +1,7 @@
 package com.example.LibrarySystem.services;
 
 import com.example.LibrarySystem.models.MedioPago;
+import com.example.LibrarySystem.models.Valoracion;
 import com.example.LibrarySystem.repositories.MedioPagoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -18,6 +19,32 @@ import java.util.function.Function;
 public class MedioPagoService implements MedioPagoRepository{
     @Autowired
     private MedioPagoRepository medioPagoRepository;
+
+    public List<MedioPago> listMedioPago() {
+        return medioPagoRepository.findAll();
+    }
+    public MedioPago getByIdMedPago(long id) {
+        return medioPagoRepository.findById(id).get();
+    }
+    public void deleteMedioPago(long id) {
+        medioPagoRepository.deleteById(id);
+
+
+    }
+    public MedioPago createMedPago(MedioPago neoMedPago){
+        return medioPagoRepository.save(neoMedPago);
+    }
+
+    public MedioPago updateMedioPago( MedioPago medioPagoMod){
+        MedioPago medioPago= medioPagoRepository.findById(medioPagoMod.getIdMedioPago()).orElse(null);
+        if(medioPago!=null){
+            medioPago.setMedioPago(medioPagoMod.getMedioPago());
+            return medioPagoRepository.save(medioPagoMod);
+        }
+        else{
+            return null;
+        }
+    }
 
     @Override
     public void flush() {

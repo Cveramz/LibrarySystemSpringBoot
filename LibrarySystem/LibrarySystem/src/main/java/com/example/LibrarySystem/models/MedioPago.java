@@ -10,22 +10,25 @@ public class MedioPago {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_mediopago")
-    private Integer idMedioPago;
+    private long id;
 
     @Column(name = "medio_pago", length = 50)
     private String medioPago;
 
-    public MedioPago(){}
+    public MedioPago(long id, String medioPago){
+        this.id = id;
+        this.medioPago = medioPago;
+    }
     public MedioPago(String medioPago) {
         this.medioPago = medioPago;
     }
 
-    public Integer getIdMedioPago() {
-        return idMedioPago;
+    public long getIdMedioPago() {
+        return id;
     }
 
-    public void setIdMedioPago(Integer idMedioPago) {
-        this.idMedioPago = idMedioPago;
+    public void setIdMedioPago(long idMedioPago) {
+        this.id = idMedioPago;
     }
 
     public String getMedioPago() {

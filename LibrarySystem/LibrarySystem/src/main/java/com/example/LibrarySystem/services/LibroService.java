@@ -41,6 +41,12 @@ public class LibroService implements LibroRepository{
 
         return libroRepository.getLibroById(isbn);
     }
+
+    @Override
+    public Libro updateLibro(Libro libroUpdate) {
+        return null;
+    }
+
     /*--------------------------------------------------------------------------------------------------------
   * updateLibro: metodo que actualiza los datos de un libro del mismo id;
   *

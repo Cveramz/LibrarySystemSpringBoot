@@ -22,22 +22,40 @@ public class RolService implements RolRepository{
     private RolRepository rolRepository;
     @Autowired
     private UsuarioRepository usuarioRepository;
-    @Override
-    public void flush() {
-
-    }
+    /**
+     * Obtiene todos los objetos de tipo Rol disponibles.
+     *
+     * @return Una lista de objetos de tipo Rol que contiene todos los registros disponibles en la base de datos.
+     */
     @Override
     public List<Rol> findAll() {
         return rolRepository.findAll();
     }
+    /**
+     * Encuentra un objeto de tipo Rol por su identificador (ID).
+     *
+     * @param idRol El identificador del objeto Rol que se desea obtener.
+     * @return Un objeto de tipo Optional que contiene el Rol si se encuentra con el ID proporcionado, o un Optional vacío si no existe un registro con ese ID.
+     */
     public Optional<Rol> findRolById(Long idRol) {
         return rolRepository.findById(idRol);
     }
-
+    /**
+     * Asigna un nuevo rol a un usuario específico.
+     *
+     * @param usuario El objeto de tipo Usuario al que se asignará el nuevo Rol.
+     * @param nombreRol El nombre del nuevo rol que se asignará al usuario.
+     */
     public void asignarRolAUsuario(Usuario usuario, String nombreRol) {
         Rol rol = new Rol(usuario, nombreRol);
         rolRepository.save(rol);
     }
+    /**
+     * Edita el nombre del rol de un usuario específico por su identificador (ID) de rol.
+     *
+     * @param usuarioId El identificador del Rol cuyo nombre se desea editar.
+     * @param nuevoRol El nuevo nombre que se asignará al rol del usuario.
+     */
     public void editarRolDeUsuario(Long usuarioId, String nuevoRol) {
         Rol rol = rolRepository.findById(usuarioId).orElse(null);
         if (rol != null) {
@@ -45,9 +63,16 @@ public class RolService implements RolRepository{
             rolRepository.save(rol);
         }
     }
-
+    /**
+     * Elimina un objeto de tipo Rol por su identificador (ID).
+     *
+     * @param rolId El identificador del objeto Rol que se desea eliminar.
+     */
     public void eliminarRolPorId(Long rolId) {
         rolRepository.deleteById(rolId);
+    }
+    @Override
+    public void flush() {
     }
     @Override
     public <S extends Rol> S saveAndFlush(S entity) {

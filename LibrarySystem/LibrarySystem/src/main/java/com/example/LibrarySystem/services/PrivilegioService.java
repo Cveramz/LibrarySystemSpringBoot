@@ -19,38 +19,61 @@ import java.util.function.Function;
 public class PrivilegioService implements PrivilegioRepository{
     @Autowired
     private PrivilegioRepository privilegioRepository;
-
-    @Override
-    public void flush() {
-
-    }
+    /**
+     * Obtiene todos los privilegios disponibles.
+     *
+     * @return Una lista de objetos de tipo Privilegio que contiene todos los privilegios disponibles en la base de datos.
+     */
     @Override
     public List<Privilegio> findAll() {
         return privilegioRepository.findAll();
     }
+    /**
+     * Obtiene un privilegio por su identificador (ID).
+     *
+     * @param idPrivilegio El identificador del privilegio que se desea obtener.
+     * @return Un objeto de tipo Privilegio si se encuentra el privilegio con el ID proporcionado, o null si no existe un privilegio con ese ID.
+     */
     public Privilegio obtenerPrivilegioPorId(Long idPrivilegio) {
         return privilegioRepository.findById(idPrivilegio).orElse(null);
     }
-
+    /**
+     * Agrega un nuevo privilegio con el nombre especificado.
+     *
+     * @param nombrePrivilegio El nombre del nuevo privilegio que se desea agregar.
+     * @return Un objeto de tipo Privilegio que representa el nuevo privilegio creado y almacenado en la base de datos.
+     */
     public Privilegio agregarPrivilegio(String nombrePrivilegio) {
         Privilegio nuevoPrivilegio = new Privilegio(nombrePrivilegio);
         return privilegioRepository.save(nuevoPrivilegio);
     }
-
-    public void editarPrivilegio(Long id, String nuevoPirvilegio) {
+    /**
+     * Edita el nombre de un privilegio específico por su identificador (ID).
+     *
+     * @param id El identificador del privilegio que se desea editar.
+     * @param nuevoPrivilegio El nuevo nombre que se asignará al privilegio.
+     */
+    public void editarPrivilegio(Long id, String nuevoPrivilegio) {
         Privilegio privilegio = privilegioRepository.findById(id).orElse(null);
         if (privilegio != null) {
-            privilegio.setNombre_privilegio(nuevoPirvilegio);
+            privilegio.setNombre_privilegio(nuevoPrivilegio);
             privilegioRepository.save(privilegio);
         }
     }
+    /**
+     * Elimina un privilegio por su identificador (ID).
+     *
+     * @param idPrivilegio El identificador del privilegio que se desea eliminar.
+     */
     public void eliminarPrivilegio(Long idPrivilegio) {
         Privilegio privilegio = privilegioRepository.findById(idPrivilegio).orElse(null);
         if (privilegio != null) {
             privilegioRepository.delete(privilegio);
         }
     }
-
+    @Override
+    public void flush() {
+    }
     @Override
     public <S extends Privilegio> S saveAndFlush(S entity) {
         return null;

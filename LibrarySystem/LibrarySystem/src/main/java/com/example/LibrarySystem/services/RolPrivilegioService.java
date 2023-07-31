@@ -25,26 +25,42 @@ public class RolPrivilegioService implements RolPrivilegioRepository{
     private RolPrivilegioRepository rolPrivilegioRepository;
     @Autowired
     private RolRepository rolRepository;
-
     @Autowired
     private PrivilegioRepository privilegioRepository;
-    @Override
-    public void flush() {
-
-    }
+    /**
+     * Obtiene todos los objetos de tipo RolPrivilegio disponibles.
+     *
+     * @return Una lista de objetos de tipo RolPrivilegio que contiene todos los registros disponibles en la base de datos.
+     */
     @Override
     public List<RolPrivilegio> findAll() {
         return rolPrivilegioRepository.findAll();
     }
-
+    /**
+     * Obtiene un objeto de tipo RolPrivilegio por su identificador (ID).
+     *
+     * @param idRolPrivilegio El identificador del objeto RolPrivilegio que se desea obtener.
+     * @return Un objeto de tipo RolPrivilegio si se encuentra el registro con el ID proporcionado, o null si no existe un registro con ese ID.
+     */
     public RolPrivilegio obtenerRolPrivilegioPorId(Long idRolPrivilegio) {
         return rolPrivilegioRepository.findById(idRolPrivilegio).orElse(null);
     }
-
+    /**
+     * Agrega un nuevo objeto de tipo RolPrivilegio asociado a un Rol y un Privilegio específicos.
+     *
+     * @param rol El objeto de tipo Rol al que se asociará el nuevo RolPrivilegio.
+     * @param privilegio El objeto de tipo Privilegio al que se asociará el nuevo RolPrivilegio.
+     */
     public void agregarRolPrivilegio(Rol rol, Privilegio privilegio) {
         RolPrivilegio rolPrivilegio = new RolPrivilegio(rol, privilegio);
         rolPrivilegioRepository.save(rolPrivilegio);
     }
+    /**
+     * Edita el Privilegio asociado a un objeto de tipo RolPrivilegio por su identificador (ID) de Rol.
+     *
+     * @param idRol El identificador del RolPrivilegio cuyo Privilegio se desea editar.
+     * @param idPrivilegioNuevo El nuevo identificador del Privilegio que se asignará al RolPrivilegio.
+     */
     public void editarRolPrivilegio(Long idRol, Integer idPrivilegioNuevo) {
         RolPrivilegio rolPrivilegio = rolPrivilegioRepository.findById(idRol).orElse(null);
         if (rolPrivilegio != null) {
@@ -54,11 +70,19 @@ public class RolPrivilegioService implements RolPrivilegioRepository{
             rolPrivilegioRepository.save(rolPrivilegio);
         }
     }
+    /**
+     * Elimina un objeto de tipo RolPrivilegio por su identificador (ID).
+     *
+     * @param id El identificador del objeto RolPrivilegio que se desea eliminar.
+     */
     public void eliminarRolPrivilegio(Long id) {
         RolPrivilegio rolPrivilegio = rolPrivilegioRepository.findById(id).orElse(null);
         if (rolPrivilegio != null) {
             rolPrivilegioRepository.delete(rolPrivilegio);
         }
+    }
+    @Override
+    public void flush() {
     }
     @Override
     public <S extends RolPrivilegio> S saveAndFlush(S entity) {

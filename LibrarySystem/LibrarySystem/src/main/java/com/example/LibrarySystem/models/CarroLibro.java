@@ -8,34 +8,41 @@ public class CarroLibro {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     @Column(name = "id_carro_libro")
-    private Integer idCarroLibro;
+    private long id;
 
     @Column(name = "isbn")
-    private Long isbn;
+    private long isbn;
 
     @ManyToOne
     @JoinColumn(name = "id_carro")
     private Carro carro;
+
+
     public CarroLibro(){}
-    public CarroLibro(Long isbn, Carro carro) {
+    public CarroLibro(long id, long isbn, Carro carro) {
+        this.id = id;
         this.isbn = isbn;
         this.carro = carro;
     }
 
-    public Integer getIdCarroLibro() {
-        return idCarroLibro;
+    //GETTERS Y SETTERS
+
+
+    public long getId() {
+        return id;
     }
 
-    public void setIdCarroLibro(Integer idCarroLibro) {
-        this.idCarroLibro = idCarroLibro;
+    public void setId(long id) {
+        this.id = id;
     }
 
-    public Long getIsbn() {
+    public long getIsbn() {
         return isbn;
     }
 
-    public void setIsbn(Long isbn) {
+    public void setIsbn(long isbn) {
         this.isbn = isbn;
     }
 

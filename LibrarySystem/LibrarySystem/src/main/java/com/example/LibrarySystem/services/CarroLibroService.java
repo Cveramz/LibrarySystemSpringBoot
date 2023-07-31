@@ -16,8 +16,58 @@ import java.util.function.Function;
 
 @Service
 public class CarroLibroService implements CarroLibroRepository{
+
     @Autowired
     private CarroLibroRepository carroLibroRepository;
+
+    /*
+     * createCarroLibro: Método que guarda un nuevo CarroLibro en la base de datos.
+     *
+     * @param carroLibro - Un objeto de tipo CarroLibro que contiene los datos del CarroLibro a guardar.
+     * @return - El CarroLibro creado y registrado.
+     */
+    public CarroLibro createCarroLibro(CarroLibro carroLibro) {
+        return carroLibroRepository.save(carroLibro);
+    }
+
+    /*
+     * getCarroLibroById: Método que obtiene un CarroLibro según su id.
+     *
+     * @param id_carro_libro - El id del CarroLibro en la base de datos.
+     * @return - El CarroLibro correspondiente al id especificado.
+     */
+    public CarroLibro getCarroLibroById(long id) {
+        return carroLibroRepository.getCarroLibroById(id);
+    }
+
+    /*
+     * updateCarroLibro: Método que actualiza los datos de un CarroLibro con el mismo id.
+     *
+     * @param carroLibroUpdate - El objeto con el id y los datos nuevos del CarroLibro.
+     * @return - El CarroLibro actualizado.
+     */
+    public CarroLibro updateCarroLibro(CarroLibro carroLibroUpdate) {
+        CarroLibro existente = carroLibroRepository.findById(carroLibroUpdate.getId()).orElse(null);
+        if (existente != null) {
+            existente.setIsbn(carroLibroUpdate.getIsbn());
+            existente.setCarro(carroLibroUpdate.getCarro());
+            return carroLibroRepository.save(existente);
+        } else {
+            return null;
+        }
+    }
+
+    /*
+     * deleteByIdCarroLibro: Método que elimina un CarroLibro por su id.
+     *
+     * @param id - El id del CarroLibro a eliminar.
+     */
+    public void deleteByIdCarroLibro(long id) {
+        carroLibroRepository.deleteById(id);
+    }
+
+
+
 
 
     @Override

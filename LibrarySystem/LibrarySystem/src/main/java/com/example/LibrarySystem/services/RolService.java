@@ -20,9 +20,8 @@ import java.util.function.Function;
 public class RolService implements RolRepository{
     @Autowired
     private RolRepository rolRepository;
-    @Autowired
-    private UsuarioRepository usuarioRepository;
-    /**
+
+    /*
      * Obtiene todos los objetos de tipo Rol disponibles.
      *
      * @return Una lista de objetos de tipo Rol que contiene todos los registros disponibles en la base de datos.
@@ -31,7 +30,7 @@ public class RolService implements RolRepository{
     public List<Rol> findAll() {
         return rolRepository.findAll();
     }
-    /**
+    /*
      * Encuentra un objeto de tipo Rol por su identificador (ID).
      *
      * @param idRol El identificador del objeto Rol que se desea obtener.
@@ -40,7 +39,7 @@ public class RolService implements RolRepository{
     public Optional<Rol> findRolById(Long idRol) {
         return rolRepository.findById(idRol);
     }
-    /**
+    /*
      * Asigna un nuevo rol a un usuario específico.
      *
      * @param usuario El objeto de tipo Usuario al que se asignará el nuevo Rol.
@@ -50,7 +49,7 @@ public class RolService implements RolRepository{
         Rol rol = new Rol(usuario, nombreRol);
         rolRepository.save(rol);
     }
-    /**
+    /*
      * Edita el nombre del rol de un usuario específico por su identificador (ID) de rol.
      *
      * @param usuarioId El identificador del Rol cuyo nombre se desea editar.
@@ -63,7 +62,7 @@ public class RolService implements RolRepository{
             rolRepository.save(rol);
         }
     }
-    /**
+    /*
      * Elimina un objeto de tipo Rol por su identificador (ID).
      *
      * @param rolId El identificador del objeto Rol que se desea eliminar.

@@ -4,12 +4,14 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "libro_categoria")
+@NamedQuery(name = "LibroCategoria.findByCategoriaId", query = "SELECT lc FROM LibroCategoria lc WHERE lc.categoria.idCategoria = :idCategoria")
 public class LibroCategoria {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_libro_categoria")
     private Integer idLibroCategoria;
+
 
     @ManyToOne
     @JoinColumn(name = "isbn")

@@ -109,4 +109,8 @@ public class Libro {
     public void setStock(Integer stock) {
         this.stock = stock;
     }
+
+    public long getIdLibro() {
+        return 0;
+    }
 }

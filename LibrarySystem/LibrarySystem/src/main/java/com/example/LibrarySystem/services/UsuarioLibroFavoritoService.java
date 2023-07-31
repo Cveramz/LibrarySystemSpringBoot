@@ -29,14 +29,36 @@ public class UsuarioLibroFavoritoService implements UsuarioLibroFavoritoReposito
 
     }
 
+    public List<UsuarioLibroFavorito> listUserLibFav() {
+        return usuarioLibroFavoritoRepository.findAll();
+    }
+
+    public UsuarioLibroFavorito getByIdUserLibFav(Long id) {
+        return usuarioLibroFavoritoRepository.findById(id).get();
+    }
+    public UsuarioLibroFavorito updateUserLibFav( UsuarioLibroFavorito ulf){
+        UsuarioLibroFavorito userLibFav= usuarioLibroFavoritoRepository.findById(ulf.getIdLibroFavorito()).orElse(null);
+        if(userLibFav!=null){
+            userLibFav.setLibro(ulf.getLibro());
+            userLibFav.setUsuario(ulf.getUsuario());
+            return usuarioLibroFavoritoRepository.save(ulf);
+        }
+        else{
+            return null;
+        }
+
+    }
+
+
+    public void deleteByIdUserLibFav(Long id) {
+        usuarioLibroFavoritoRepository.deleteById(id);
+
+    }
     @Override
     public void flush() {
 
     }
-    @Override
-    public List<UsuarioLibroFavorito> findAll() {
-        return usuarioLibroFavoritoRepository.findAll();
-    }
+
     @Override
     public <S extends UsuarioLibroFavorito> S saveAndFlush(S entity) {
         return null;
@@ -68,9 +90,10 @@ public class UsuarioLibroFavoritoService implements UsuarioLibroFavoritoReposito
     }
 
     @Override
-    public UsuarioLibroFavorito getById(Long id) {
-        return usuarioLibroFavoritoRepository.findById(id).get();
+    public UsuarioLibroFavorito getById(Long aLong) {
+        return null;
     }
+
 
     @Override
     public UsuarioLibroFavorito getReferenceById(Long aLong) {
@@ -123,6 +146,11 @@ public class UsuarioLibroFavoritoService implements UsuarioLibroFavoritoReposito
     }
 
     @Override
+    public List<UsuarioLibroFavorito> findAll() {
+        return null;
+    }
+
+    @Override
     public Optional<UsuarioLibroFavorito> findById(Long aLong) {
         return Optional.empty();
     }
@@ -148,6 +176,7 @@ public class UsuarioLibroFavoritoService implements UsuarioLibroFavoritoReposito
     public void deleteById(Long aLong) {
 
     }
+
 
     @Override
     public void delete(UsuarioLibroFavorito entity) {

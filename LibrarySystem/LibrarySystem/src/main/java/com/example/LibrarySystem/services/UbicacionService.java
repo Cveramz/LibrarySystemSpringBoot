@@ -51,7 +51,7 @@ public class UbicacionService implements UbicacionRepository{
      * @return - la ubicacion actualizada;
      --------------------------------------------------------------------------------------------------------*/
     public Ubicacion updateUbicacion(Ubicacion ubicacionUpdate) {
-        Ubicacion existente = ubicacionRepository.findById(ubicacionUpdate.getIdUbicacion()).orElse(null);
+        Ubicacion existente = ubicacionRepository.findById(ubicacionUpdate.getId()).orElse(null);
         if (existente != null) {
             existente.setPaisOrigen(ubicacionUpdate.getPaisOrigen());
             existente.setLibro(ubicacionUpdate.getLibro());

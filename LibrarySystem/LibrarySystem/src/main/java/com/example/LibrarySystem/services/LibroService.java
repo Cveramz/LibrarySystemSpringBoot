@@ -19,6 +19,7 @@ import java.util.function.Function;
 public class LibroService implements LibroRepository{
     @Autowired
     private LibroRepository libroRepository;
+
     /*--------------------------------------------------------------------------------------------------------
      * createLibro: metodo que guarda un libro en la base de datos;
      *
@@ -36,15 +37,14 @@ public class LibroService implements LibroRepository{
      * @param id_libro - el id del libro en la base de datos;
      * @return - el libro correspondiente al id especificado;
       --------------------------------------------------------------------------------------------------------*/
-    @Override
-    public Libro getLibroById(long isbn){
-
-        return libroRepository.getLibroById(isbn);
+    public Libro getLibroByIsbn(long isbn){
+        return libroRepository.getLibroByIsbn(isbn);
     }
 
-    @Override
+
     public Libro updateLibro(Libro libroUpdate) {
-        return null;
+
+        return libroRepository.save(libroUpdate);
     }
 
     /*--------------------------------------------------------------------------------------------------------
@@ -54,7 +54,7 @@ public class LibroService implements LibroRepository{
   * @return - el libro actualizado;
    --------------------------------------------------------------------------------------------------------*/
     public Libro updateCarro(Libro libroUpdate) {
-        Libro existente = libroRepository.getLibroById(libroUpdate.getIdLibro());
+        Libro existente = libroRepository.getLibroByIsbn(libroUpdate.getIsbn());
         if (existente != null) {
             existente.setUsuario(libroUpdate.getUsuario());
             existente.setNombre(libroUpdate.getNombre());

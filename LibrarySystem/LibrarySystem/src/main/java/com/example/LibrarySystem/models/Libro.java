@@ -8,8 +8,9 @@ public class Libro {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     @Column(name = "isbn")
-    private Long isbn;
+    private long isbn;
 
     @ManyToOne
     @JoinColumn(name = "id_usuario")
@@ -46,11 +47,13 @@ public class Libro {
         this.stock = stock;
     }
 
-    public Long getIsbn() {
+    //GETTERS Y SETTERS
+
+    public long getIsbn() {
         return isbn;
     }
 
-    public void setIsbn(Long isbn) {
+    public void setIsbn(long isbn) {
         this.isbn = isbn;
     }
 
@@ -108,9 +111,5 @@ public class Libro {
 
     public void setStock(Integer stock) {
         this.stock = stock;
-    }
-
-    public long getIdLibro() {
-        return 0;
     }
 }

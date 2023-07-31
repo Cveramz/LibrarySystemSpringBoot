@@ -20,7 +20,7 @@ public class UsuarioRest {
      *
      * @return - todos los usuarios registrados en base de datos;
       --------------------------------------------------------------------------------------------------------*/
-  @GetMapping
+  @GetMapping()
     private ResponseEntity<List<Usuario>> getAllUsuarios(){
         return ResponseEntity.ok(usuarioService.findAll());
     }

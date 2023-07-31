@@ -8,8 +8,9 @@ public class Ubicacion {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     @Column(name = "id_ubicacion")
-    private Integer idUbicacion;
+    private long id;
 
     @Column(name = "pais_origen", length = 50)
     private String paisOrigen;
@@ -24,12 +25,14 @@ public class Ubicacion {
         this.libro = libro;
     }
 
-    public Long getIdUbicacion() {
-        return idUbicacion;
+    //GETTERS Y SETTERS
+
+    public long getId() {
+        return id;
     }
 
-    public void setIdUbicacion(Integer idUbicacion) {
-        this.idUbicacion = idUbicacion;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getPaisOrigen() {

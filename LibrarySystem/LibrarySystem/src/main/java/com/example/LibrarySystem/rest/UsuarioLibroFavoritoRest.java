@@ -42,7 +42,7 @@ public class UsuarioLibroFavoritoRest {
     }
 
     @DeleteMapping("deleteUserLibFav/{id}")
-    public void deleteByIdUserLibFav(@PathVariable Long id){
+    public void deleteByIdUserLibFav(@PathVariable long id){
         usuarioLibroFavoritoService.deleteByIdUserLibFav(id);
     }
 

@@ -8,7 +8,7 @@ public class Valoracion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_valoracion")
-    private Integer idValoracion;
+    private long id;
 
     @Column(name = "valor")
     private Integer valor;
@@ -21,18 +21,19 @@ public class Valoracion {
     @JoinColumn(name = "isbn")
     private Libro libro;
     public Valoracion(){}
-    public Valoracion(Integer valor, Usuario usuario, Libro libro) {
+    public Valoracion(long id, Integer valor, Usuario usuario, Libro libro) {
+        this.id = id;
         this.valor = valor;
         this.usuario = usuario;
         this.libro = libro;
     }
 
-    public Integer getIdValoracion() {
-        return idValoracion;
+    public long getIdValoracion() {
+        return id;
     }
 
     public void setIdValoracion(Integer idValoracion) {
-        this.idValoracion = idValoracion;
+        this.id = idValoracion;
     }
 
     public Integer getValor() {

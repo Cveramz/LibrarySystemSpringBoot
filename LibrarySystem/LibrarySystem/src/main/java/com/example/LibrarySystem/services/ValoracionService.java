@@ -1,5 +1,6 @@
 package com.example.LibrarySystem.services;
 
+import com.example.LibrarySystem.models.UsuarioLibroFavorito;
 import com.example.LibrarySystem.models.Valoracion;
 import com.example.LibrarySystem.repositories.ValoracionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,15 +20,38 @@ public class ValoracionService implements ValoracionRepository {
     @Autowired
     private ValoracionRepository valoracionRepository;
 
+
+    public List<Valoracion> listValoracion() {
+        return valoracionRepository.findAll();
+    }
+    public Valoracion getByIdVal(long id) {
+        return valoracionRepository.findById(id).get();
+    }
+    public void deleteValoracion(long id) {
+        valoracionRepository.deleteById(id);
+
+
+    }
+    public Valoracion createValoracion(Valoracion neoValoracion){
+        return valoracionRepository.save(neoValoracion);
+    }
+
+    public Valoracion updateValoracion( Valoracion valoracionMod){
+        Valoracion valoracion= valoracionRepository.findById(valoracionMod.getIdValoracion()).orElse(null);
+        if(valoracion!=null){
+            valoracion.setValor(valoracionMod.getValor());
+            valoracion.setUsuario(valoracionMod.getUsuario());
+            valoracion.setLibro(valoracionMod.getLibro());
+            return valoracionRepository.save(valoracionMod);
+        }
+        else{
+            return null;
+        }
+    }
     @Override
     public void flush() {
 
     }
-    @Override
-    public List<Valoracion> findAll() {
-        return valoracionRepository.findAll();
-    }
-
     @Override
     public <S extends Valoracion> S saveAndFlush(S entity) {
         return null;
@@ -62,6 +86,7 @@ public class ValoracionService implements ValoracionRepository {
     public Valoracion getById(Long aLong) {
         return null;
     }
+
 
     @Override
     public Valoracion getReferenceById(Long aLong) {
@@ -114,6 +139,11 @@ public class ValoracionService implements ValoracionRepository {
     }
 
     @Override
+    public List<Valoracion> findAll() {
+        return null;
+    }
+
+    @Override
     public Optional<Valoracion> findById(Long aLong) {
         return Optional.empty();
     }
@@ -139,6 +169,7 @@ public class ValoracionService implements ValoracionRepository {
     public void deleteById(Long aLong) {
 
     }
+
 
     @Override
     public void delete(Valoracion entity) {

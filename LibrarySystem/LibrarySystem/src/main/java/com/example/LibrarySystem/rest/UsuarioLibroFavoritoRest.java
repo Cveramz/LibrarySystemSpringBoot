@@ -24,7 +24,7 @@ public class UsuarioLibroFavoritoRest {
         return usuarioLibroFavoritoService.getByIdUserLibFav(idLibroFavorito);
     }
 
-    @GetMapping("listUserLibFav")
+    @GetMapping
     public List<UsuarioLibroFavorito> listUserLibFav(){
         return usuarioLibroFavoritoService.listUserLibFav();
     }
@@ -41,7 +41,7 @@ public class UsuarioLibroFavoritoRest {
     }
 
     @DeleteMapping("deleteUserLibFav/{id}")
-    public void deleteByIdUserLibFav(@PathVariable Long id){
+    public void deleteByIdUserLibFav(@PathVariable long id){
         usuarioLibroFavoritoService.deleteByIdUserLibFav(id);
     }
 

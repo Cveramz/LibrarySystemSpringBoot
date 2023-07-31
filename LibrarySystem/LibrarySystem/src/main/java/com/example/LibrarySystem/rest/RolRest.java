@@ -19,12 +19,12 @@ public class RolRest {
     private RolService rolService;
     @Autowired
     private UsuarioService usuarioService;
-    @GetMapping("/obtenerRol")
+    @GetMapping("/ObtenerRol")
     public ResponseEntity<List<Rol>> findAll() {
         List<Rol> roles = rolService.findAll();
         return ResponseEntity.ok(roles);
     }
-    @GetMapping("/obtenerRolPorId/{id}")
+    @GetMapping("/ObtenerRolPorId/{id}")
     public ResponseEntity<Rol> obtenerRolPorId(@PathVariable Long id) {
         Optional<Rol> rol = rolService.findRolById(id);
         if (rol.isPresent()) {
@@ -35,26 +35,24 @@ public class RolRest {
     }
 
 
-    @PostMapping("/asignar-rol")
+    @PostMapping("/AsignarRol")
     public ResponseEntity<String> asignarRolAUsuario(@RequestParam Long usuarioId, @RequestParam String nombreRol) {
         Usuario usuario = usuarioService.getUsuarioByid(usuarioId);
-
         if (usuario == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuario no encontrado");
         }
-
         rolService.asignarRolAUsuario(usuario, nombreRol);
         return ResponseEntity.ok("Rol asignado con éxito");
     }
 
     //http://localhost:8080/Rol/editar-rol/1?nuevoRol=NUEVO_ROL
-    @PutMapping("/editar-rol/{usuarioId}")
+    @PutMapping("/EditarRolDeUsuario/{usuarioId}")
     public ResponseEntity<String> editarRolDeUsuario(@PathVariable Long usuarioId, @RequestParam String nuevoRol) {
         rolService.editarRolDeUsuario(usuarioId, nuevoRol);
         return ResponseEntity.ok("Rol del usuario editado con éxito");
     }
     // http://localhost:8080/Rol/eliminar-rol/29
-    @DeleteMapping("/eliminar-rol/{rolId}")
+    @DeleteMapping("/EliminarRol/{rolId}")
     public ResponseEntity<String> eliminarRolPorId(@PathVariable Long rolId) {
         rolService.eliminarRolPorId(rolId);
         return ResponseEntity.ok("Rol eliminado con éxito");

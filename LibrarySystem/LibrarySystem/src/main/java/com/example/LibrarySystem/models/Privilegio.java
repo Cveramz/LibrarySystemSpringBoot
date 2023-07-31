@@ -2,6 +2,10 @@ package com.example.LibrarySystem.models;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 @Entity
 @Table(name="privilegio")
 public class Privilegio {
@@ -10,6 +14,9 @@ public class Privilegio {
     private Integer id_privilegio;
     @Column(name="nombre_privilegio")
     private String nombre_privilegio;
+
+    @OneToMany(mappedBy = "id_privilegio", cascade = CascadeType.REMOVE)
+    private List<RolPrivilegio> rolesPrivilegios;
     public Privilegio(){}
     public Privilegio( String nombre_privilegio) {
         this.nombre_privilegio = nombre_privilegio;

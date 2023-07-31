@@ -40,7 +40,6 @@ public class RolService implements RolRepository{
     }
     public void editarRolDeUsuario(Long usuarioId, String nuevoRol) {
         Rol rol = rolRepository.findById(usuarioId).orElse(null);
-
         if (rol != null) {
             rol.setNombreRol(nuevoRol);
             rolRepository.save(rol);

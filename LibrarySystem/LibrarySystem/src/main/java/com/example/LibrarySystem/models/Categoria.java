@@ -1,5 +1,6 @@
 package com.example.LibrarySystem.models;
 
+
 import jakarta.persistence.*;
 
 @Entity
@@ -9,20 +10,22 @@ public class Categoria {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_categoria")
-    private Integer idCategoria;
+    private Long idCategoria;
 
     @Column(name = "tipo", length = 50)
     private String tipo;
-    public Categoria(){}
+
+    public Categoria() {}
+
     public Categoria(String tipo) {
         this.tipo = tipo;
     }
 
-    public Integer getIdCategoria() {
+    public Long getIdCategoria() {
         return idCategoria;
     }
 
-    public void setIdCategoria(Integer idCategoria) {
+    public void setIdCategoria(Long idCategoria) {
         this.idCategoria = idCategoria;
     }
 

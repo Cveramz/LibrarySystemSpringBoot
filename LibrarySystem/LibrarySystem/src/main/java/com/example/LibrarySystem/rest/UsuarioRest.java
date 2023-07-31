@@ -19,7 +19,6 @@ public class UsuarioRest {
      * getAllUsuarios: retorna a todos los usuarios presentes en el sistema;
      *
      * @return - todos los usuarios registrados en base de datos;
-     *
       --------------------------------------------------------------------------------------------------------*/
   @GetMapping
     private ResponseEntity<List<Usuario>> getAllUsuarios(){

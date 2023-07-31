@@ -1,5 +1,6 @@
 package com.example.LibrarySystem.services;
 
+import com.example.LibrarySystem.models.Carro;
 import com.example.LibrarySystem.models.Libro;
 import com.example.LibrarySystem.repositories.LibroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,64 @@ import java.util.function.Function;
 public class LibroService implements LibroRepository{
     @Autowired
     private LibroRepository libroRepository;
+    /*--------------------------------------------------------------------------------------------------------
+     * createLibro: metodo que guarda un libro en la base de datos;
+     *
+     * @param libro - un objeto de tipo Libro que contiene los datos del libro a registrar;
+     * @return - el libro registrado;
+      --------------------------------------------------------------------------------------------------------*/
+    public Libro createLibro(Libro libro){
+        return libroRepository.save(libro);
+    }
 
+
+    /*--------------------------------------------------------------------------------------------------------
+     * getLibroById: metodo que obtiene un libro según su id;
+     *
+     * @param id_libro - el id del libro en la base de datos;
+     * @return - el libro correspondiente al id especificado;
+      --------------------------------------------------------------------------------------------------------*/
+    @Override
+    public Libro getLibroById(long isbn){
+
+        return libroRepository.getLibroById(isbn);
+    }
+
+    @Override
+    public Libro updateLibro(Libro libroUpdate) {
+        return null;
+    }
+
+    /*--------------------------------------------------------------------------------------------------------
+  * updateLibro: metodo que actualiza los datos de un libro del mismo id;
+  *
+  * @param  - el objeto con el id y los datos nuevos del libro;
+  * @return - el libro actualizado;
+   --------------------------------------------------------------------------------------------------------*/
+    public Libro updateCarro(Libro libroUpdate) {
+        Libro existente = libroRepository.getLibroById(libroUpdate.getIdLibro());
+        if (existente != null) {
+            existente.setUsuario(libroUpdate.getUsuario());
+            existente.setNombre(libroUpdate.getNombre());
+            existente.setVisualizaciones(libroUpdate.getVisualizaciones());
+            existente.setValoracionPromedio(libroUpdate.getValoracionPromedio());
+            existente.setLinkReferencia(libroUpdate.getLinkReferencia());
+            existente.setPrecio(libroUpdate.getPrecio());
+            existente.setStock(libroUpdate.getStock());
+            return libroRepository.save(existente);
+        } else {
+            return null;
+        }
+    }
+    /*--------------------------------------------------------------------------------------------------------
+ * deleteByIdCarro: metodo que elimina un carro por su id;
+ *
+ * @param id - id del libro a eliminar;
+ *
+  --------------------------------------------------------------------------------------------------------*/
+    public void deleteByIdLibro(Long isbn) {
+        libroRepository.deleteById(isbn);
+    }
     @Override
     public void flush() {
 

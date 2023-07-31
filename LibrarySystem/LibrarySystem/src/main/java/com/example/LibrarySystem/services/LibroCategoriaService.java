@@ -11,6 +11,7 @@ import org.springframework.data.repository.query.FluentQuery;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.function.Function;
 
@@ -18,6 +19,9 @@ import java.util.function.Function;
 public class LibroCategoriaService implements LibroCategoriaRepository{
     @Autowired
     private LibroCategoriaRepository libroCategoriaRepository;
+
+
+
 
     @Override
     public void flush() {
@@ -168,4 +172,6 @@ public class LibroCategoriaService implements LibroCategoriaRepository{
     public Page<LibroCategoria> findAll(Pageable pageable) {
         return null;
     }
+
+
 }

@@ -21,10 +21,8 @@ public class UsuarioLibroFavoritoService implements UsuarioLibroFavoritoReposito
     @Autowired
     private UsuarioLibroFavoritoRepository usuarioLibroFavoritoRepository;
 
-    public UsuarioLibroFavorito addUserLibFav(Usuario user, Libro lib){
-        UsuarioLibroFavorito neoUserLibFav = new UsuarioLibroFavorito();
-        neoUserLibFav.setUsuario(user);
-        neoUserLibFav.setLibro(lib);
+
+    public UsuarioLibroFavorito addUserLibFav(UsuarioLibroFavorito neoUserLibFav){
         return usuarioLibroFavoritoRepository.save(neoUserLibFav);
 
     }
@@ -33,11 +31,11 @@ public class UsuarioLibroFavoritoService implements UsuarioLibroFavoritoReposito
         return usuarioLibroFavoritoRepository.findAll();
     }
 
-    public UsuarioLibroFavorito getByIdUserLibFav(Long id) {
+    public UsuarioLibroFavorito getByIdUserLibFav(long id) {
         return usuarioLibroFavoritoRepository.findById(id).get();
     }
     public UsuarioLibroFavorito updateUserLibFav( UsuarioLibroFavorito ulf){
-        UsuarioLibroFavorito userLibFav= usuarioLibroFavoritoRepository.findById(ulf.getIdLibroFavorito()).orElse(null);
+        UsuarioLibroFavorito userLibFav= usuarioLibroFavoritoRepository.findById(ulf.getId()).orElse(null);
         if(userLibFav!=null){
             userLibFav.setLibro(ulf.getLibro());
             userLibFav.setUsuario(ulf.getUsuario());

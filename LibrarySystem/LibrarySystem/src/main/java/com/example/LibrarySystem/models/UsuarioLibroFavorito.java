@@ -8,8 +8,9 @@ public class UsuarioLibroFavorito {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     @Column(name = "id_libro_fav")
-    private Long idLibroFavorito;
+    private long id;
 
     @ManyToOne
     @JoinColumn(name = "id_usuario")
@@ -19,17 +20,20 @@ public class UsuarioLibroFavorito {
     @JoinColumn(name = "isbn")
     private Libro libro;
     public UsuarioLibroFavorito(){}
-    public UsuarioLibroFavorito(Long id, Usuario usuario, Libro libro) {
+    public UsuarioLibroFavorito(long id, Usuario usuario, Libro libro) {
+        this.id = id;
         this.usuario = usuario;
         this.libro = libro;
     }
 
-    public Long getIdLibroFavorito() {
-        return idLibroFavorito;
+    //GETTERS Y SETTERS
+
+    public long getId() {
+        return id;
     }
 
-    public void setIdLibroFavorito(Long idLibroFavorito) {
-        this.idLibroFavorito = idLibroFavorito;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public Usuario getUsuario() {

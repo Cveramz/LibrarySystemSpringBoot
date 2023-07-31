@@ -11,20 +11,21 @@ import java.util.List;
 @RestController
 @RequestMapping("/UsuarioLibroFavorito/")
 public class UsuarioLibroFavoritoRest {
+    
     @Autowired
     private UsuarioLibroFavoritoService usuarioLibroFavoritoService;
 
-    @PostMapping("addUserLibFav")
+    @PostMapping("createLibUsFav")
     public UsuarioLibroFavorito addUserLibFav(@RequestBody UsuarioLibroFavorito ulf) {
-        return usuarioLibroFavoritoService.addUserLibFav(ulf.getUsuario(),ulf.getLibro());
+        return usuarioLibroFavoritoService.addUserLibFav(ulf);
     }
 
-    @GetMapping("getByIdUserLibFav/{id}")
-    public UsuarioLibroFavorito getByIdUserLibFav(@RequestParam("idLibroFavorito") long idLibroFavorito){
+    @GetMapping("getByIdUserLibFav")
+    public UsuarioLibroFavorito getByIdUserLibFav(@RequestParam("id_libro_fav") long idLibroFavorito){
         return usuarioLibroFavoritoService.getByIdUserLibFav(idLibroFavorito);
     }
 
-    @GetMapping("listUserLibFav")
+    @GetMapping
     public List<UsuarioLibroFavorito> listUserLibFav(){
         return usuarioLibroFavoritoService.listUserLibFav();
     }
@@ -44,11 +45,5 @@ public class UsuarioLibroFavoritoRest {
     public void deleteByIdUserLibFav(@PathVariable Long id){
         usuarioLibroFavoritoService.deleteByIdUserLibFav(id);
     }
-
-
-
-
-
-
 
 }

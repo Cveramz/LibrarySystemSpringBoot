@@ -24,18 +24,43 @@ public class ValoracionService implements ValoracionRepository {
     public List<Valoracion> listValoracion() {
         return valoracionRepository.findAll();
     }
+    /*--------------------------------------------------------------------------------------------------------
+     * getByIdVal: metodo que obtiene una valoracion según su id;
+     *
+     * @param id - el id de la valoracion en la base de datos;
+     * @return - la valoracion correspondiente al id especificado;
+     --------------------------------------------------------------------------------------------------------*/
     public Valoracion getByIdVal(long id) {
         return valoracionRepository.findById(id).get();
     }
+    /*--------------------------------------------------------------------------------------------------------
+     * deleteValoracion: metodo que elimina una valoracion por su id;
+     *
+     * @param id - id de la valoracion a eliminar;
+     *
+     --------------------------------------------------------------------------------------------------------*/
     public void deleteValoracion(long id) {
         valoracionRepository.deleteById(id);
 
 
     }
+    /*--------------------------------------------------------------------------------------------------------
+     * createValoracion: metodo que guarda una nueva valoracion en la base de datos;
+     *
+     * @param neoValoracion - un objeto de tipo Valoracion que contiene los datos de la valoracion a guardar;
+     * * @return - la valoracion creada y registrada;
+     *
+      --------------------------------------------------------------------------------------------------------*/
     public Valoracion createValoracion(Valoracion neoValoracion){
         return valoracionRepository.save(neoValoracion);
     }
 
+    /*--------------------------------------------------------------------------------------------------------
+     * updateValoracion: metodo que actualiza los datos de una valoracion del mismo id;
+     *
+     * @param valoracionMod - el objeto con el id y los datos nuevos de la valoracion;
+     * @return - la valoracion actualizada;
+     --------------------------------------------------------------------------------------------------------*/
     public Valoracion updateValoracion( Valoracion valoracionMod){
         Valoracion valoracion= valoracionRepository.findById(valoracionMod.getIdValoracion()).orElse(null);
         if(valoracion!=null){

@@ -21,7 +21,13 @@ public class UsuarioLibroFavoritoService implements UsuarioLibroFavoritoReposito
     @Autowired
     private UsuarioLibroFavoritoRepository usuarioLibroFavoritoRepository;
 
-
+    /*--------------------------------------------------------------------------------------------------------
+         * addUserLibFav: metodo que guarda un nuevo UserLibFav en la base de datos;
+         *
+         * @param neoUserLibFav - un objeto de tipo UsuarioLibroFavorito que contiene los datos del UsuarioLibroFavorito a guardar;
+         * * @return - el UserLibFav creado y registrado;
+         *
+          --------------------------------------------------------------------------------------------------------*/
     public UsuarioLibroFavorito addUserLibFav(UsuarioLibroFavorito neoUserLibFav){
         return usuarioLibroFavoritoRepository.save(neoUserLibFav);
 
@@ -31,9 +37,22 @@ public class UsuarioLibroFavoritoService implements UsuarioLibroFavoritoReposito
         return usuarioLibroFavoritoRepository.findAll();
     }
 
+    /*--------------------------------------------------------------------------------------------------------
+     * geByIdUserLibFav: metodo que obtiene un Usuario libro favorito según su id;
+     *
+     * @param id - el id del usuario libro favorito en la base de datos;
+     * @return - el usuarioLibroFavorito correspondiente al id especificado;
+     --------------------------------------------------------------------------------------------------------*/
+
     public UsuarioLibroFavorito getByIdUserLibFav(long id) {
         return usuarioLibroFavoritoRepository.findById(id).get();
     }
+    /*--------------------------------------------------------------------------------------------------------
+     * updateUserLibFav: metodo que actualiza los datos de un userLibFav del mismo id;
+     *
+     * @param ulf- el objeto con el id y los datos nuevos del usuario libro favorito;
+     * @return - el usuario libro favorito actualizado;
+     --------------------------------------------------------------------------------------------------------*/
     public UsuarioLibroFavorito updateUserLibFav( UsuarioLibroFavorito ulf){
         UsuarioLibroFavorito userLibFav= usuarioLibroFavoritoRepository.findById(ulf.getId()).orElse(null);
         if(userLibFav!=null){
@@ -47,8 +66,13 @@ public class UsuarioLibroFavoritoService implements UsuarioLibroFavoritoReposito
 
     }
 
-
-    public void deleteByIdUserLibFav(Long id) {
+    /*--------------------------------------------------------------------------------------------------------
+         * deleteByIdUserLibFav: metodo que elimina un usuario libro favorito por su id;
+         *
+         * @param id - id del usuario libro favorito a eliminar;
+         *
+         --------------------------------------------------------------------------------------------------------*/
+    public void deleteByIdUserLibFav(long id) {
         usuarioLibroFavoritoRepository.deleteById(id);
 
     }

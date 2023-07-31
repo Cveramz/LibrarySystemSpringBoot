@@ -23,18 +23,42 @@ public class MedioPagoService implements MedioPagoRepository{
     public List<MedioPago> listMedioPago() {
         return medioPagoRepository.findAll();
     }
+    /*--------------------------------------------------------------------------------------------------------
+     * getByIdMedPago: metodo que obtiene un medio de pago según su id;
+     *
+     * @param id - el id del medio de pago en la base de datos;
+     * @return - el medioPago correspondiente al id especificado;
+     --------------------------------------------------------------------------------------------------------*/
     public MedioPago getByIdMedPago(long id) {
         return medioPagoRepository.findById(id).get();
     }
+    /*--------------------------------------------------------------------------------------------------------
+     * deleteMedioPago: metodo que elimina un medio de pago por su id;
+     *
+     * @param id - id del medio de pago a eliminar;
+     *
+     --------------------------------------------------------------------------------------------------------*/
     public void deleteMedioPago(long id) {
         medioPagoRepository.deleteById(id);
 
 
     }
+    /*--------------------------------------------------------------------------------------------------------
+     * createMedPago: metodo que guarda un nuevo medio de pago en la base de datos;
+     *
+     * @param neoMedPago - un objeto de tipo medio de pago que contiene los datos del mediopago a guardar;
+     * * @return - el medio de pago creado y registrado;
+     *
+      --------------------------------------------------------------------------------------------------------*/
     public MedioPago createMedPago(MedioPago neoMedPago){
         return medioPagoRepository.save(neoMedPago);
     }
-
+    /*--------------------------------------------------------------------------------------------------------
+         * updateMedioPago: metodo que actualiza los datos de un medio de pago del mismo id;
+         *
+         * @param medioPagoMod - el objeto con el id y los datos nuevos del mediopago;
+         * @return - el medio de pago actualizado;
+         --------------------------------------------------------------------------------------------------------*/
     public MedioPago updateMedioPago( MedioPago medioPagoMod){
         MedioPago medioPago= medioPagoRepository.findById(medioPagoMod.getIdMedioPago()).orElse(null);
         if(medioPago!=null){

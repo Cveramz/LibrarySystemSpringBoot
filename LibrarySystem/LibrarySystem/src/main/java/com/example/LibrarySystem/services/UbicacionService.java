@@ -1,5 +1,6 @@
 package com.example.LibrarySystem.services;
 
+import com.example.LibrarySystem.models.Compra;
 import com.example.LibrarySystem.models.Ubicacion;
 import com.example.LibrarySystem.repositories.UbicacionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +17,64 @@ import java.util.function.Function;
 
 @Service
 public class UbicacionService implements UbicacionRepository{
+
     @Autowired
     private UbicacionRepository ubicacionRepository;
+
+    /*--------------------------------------------------------------------------------------------------------
+     * createUbicacion: metodo que guarda una nueva ubicacion en la base de datos;
+     *
+     * @param ubicacion - un objeto de tipo Ubicacion que contiene los datos de la ubicacion a guardar;
+     *
+     * * @return - la ubicacion registrada;
+      --------------------------------------------------------------------------------------------------------*/
+    public Ubicacion createUbicacion(Ubicacion ubicacion){
+        return ubicacionRepository.save(ubicacion);
+    }
+
+    /*--------------------------------------------------------------------------------------------------------
+     * getCompraById: metodo que obtiene una ubicación por su id;
+     *
+     * @param id_ubicacion - el id de la ubicacion en la base de datos;
+     *
+     * @return - la ubicacion correspondiente;
+     --------------------------------------------------------------------------------------------------------*/
+    public Ubicacion getUbicacionById(long id_ubicacion) {
+        return ubicacionRepository.findById(id_ubicacion).orElse(null);
+    }
+
+    /*--------------------------------------------------------------------------------------------------------
+     * updateUbicacion: metodo que actualiza los datos de una ubicacion segun numero de ubicacion;
+     *
+     * @param UbicacionUpdate - el objeto con el numero de id y los datos actualizados;
+     *
+     * @return - la ubicacion actualizada;
+     --------------------------------------------------------------------------------------------------------*/
+    public Ubicacion updateUbicacion(Ubicacion ubicacionUpdate) {
+        Ubicacion existente = ubicacionRepository.findById(ubicacionUpdate.getIdUbicacion()).orElse(null);
+        if (existente != null) {
+            existente.setPaisOrigen(ubicacionUpdate.getPaisOrigen());
+            existente.setLibro(ubicacionUpdate.getLibro());
+            return ubicacionRepository.save(existente);
+        } else {
+            return null;
+        }
+    }
+
+
+    /*--------------------------------------------------------------------------------------------------------
+     * deleteByIdCompra: metodo que elimina una compra segun numero de transaccion;
+     *
+     * @param n_transaccion - numero de transaccion de la compra;
+     *
+     --------------------------------------------------------------------------------------------------------*/
+    public void deleteByIdUbicacion(long id_ubicacion) {
+        ubicacionRepository.deleteById(id_ubicacion);
+    }
+
+
+
+
 
     @Override
     public void flush() {

@@ -24,7 +24,7 @@ public class Ubicacion {
         this.libro = libro;
     }
 
-    public Integer getIdUbicacion() {
+    public Long getIdUbicacion() {
         return idUbicacion;
     }
 

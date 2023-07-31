@@ -13,40 +13,60 @@ public class CategoriaService {
     @Autowired
     private CategoriaRepository categoriaRepository;
 
-    // Método para obtener todas las categorías
+    /*--------------------------------------------------------------------------------------------------------
+     * findAll: Obtiene todas las categorías
+     *
+     * @param - Nulo
+     * @return - List<Categoria>
+      --------------------------------------------------------------------------------------------------------*/
     public List<Categoria> findAll() {
         return categoriaRepository.findAll();
     }
 
-    // Método para obtener una categoría por su ID
+    /*--------------------------------------------------------------------------------------------------------
+     * findByIdCategoria: Obtiene una categoría por su id
+     *
+     * @param - Long idCategoria
+     * @return - Optional<Categoria>
+      --------------------------------------------------------------------------------------------------------*/
     public Optional<Categoria> findByIdCategoria(Long idCategoria) {
         return categoriaRepository.findByIdCategoria(idCategoria);
     }
 
-    // Método para guardar una nueva categoría
+    /*--------------------------------------------------------------------------------------------------------
+     * save: Crea una nueva categoría
+     *
+     * @param - Categoria categoria
+     * @return - Categoria
+     *
+     * Ejemplo de JSON para crear una categoría:
+     *   {
+     *       "tipo": "Nueva categoría"
+     *   }
+     --------------------------------------------------------------------------------------------------------*/
     public Categoria save(Categoria categoria) {
         return categoriaRepository.save(categoria);
     }
 
-    // Método para eliminar una categoría por su ID
+    /*--------------------------------------------------------------------------------------------------------
+     * deleteById: Elimina una categoría por su id
+     *
+     * @param - Long id
+     * @return - Nulo
+      --------------------------------------------------------------------------------------------------------*/
     public void deleteById(Long id) {
         categoriaRepository.deleteById(id);
     }
 
-    // Método para obtener categorías por su "tipo"
+    /*--------------------------------------------------------------------------------------------------------
+     * findByTipo: Obtiene una categoría por su tipo
+     *
+     * @param - String tipo
+     * @return - List<Categoria>
+      --------------------------------------------------------------------------------------------------------*/
     public List<Categoria> findByTipo(String tipo) {
         return categoriaRepository.findByTipo(tipo);
     }
 
-    public Categoria updateCategoria(Long idCategoria, String tipo) {
-        Optional<Categoria> categoriaOptional = categoriaRepository.findByIdCategoria(idCategoria);
 
-        if (categoriaOptional.isPresent()) {
-            Categoria categoria = categoriaOptional.get();
-            categoria.setTipo(tipo);
-            return categoriaRepository.save(categoria);
-        } else {
-            return null; // Opcional: puedes manejar el caso de que no se encuentre la categoría.
-        }
-    }
 }

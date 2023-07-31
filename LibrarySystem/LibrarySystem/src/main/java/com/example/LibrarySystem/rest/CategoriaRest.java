@@ -15,43 +15,79 @@ public class CategoriaRest {
     @Autowired
     private CategoriaService categoriaService;
 
+    /*--------------------------------------------------------------------------------------------------------
+     * getAllCategorias: Obtiene todas las categorías
+     *
+     * @param - Nulo
+     * @return - List<Categoria>
+      --------------------------------------------------------------------------------------------------------*/
     @GetMapping
     public List<Categoria> getAllCategorias() {
         return categoriaService.findAll();
     }
 
+    /*--------------------------------------------------------------------------------------------------------
+     * getCategoriaById: Obtiene una categoría por su id
+     *
+     * @param - Long id
+     * @return - Optional<Categoria>
+      --------------------------------------------------------------------------------------------------------*/
     @GetMapping("{id}")
     public Optional<Categoria> getCategoriaById(@PathVariable Long id) {
         return categoriaService.findByIdCategoria(id);
     }
 
 
-    /* ------ Ejemplo de JSON para crear una nueva categoría ------
-    {
-    "tipo": "Nueva categoría"
-    }
-    */
+    /*--------------------------------------------------------------------------------------------------------
+        * createCategoria: Crea una nueva categoría
+        *
+        * @param - Categoria categoria
+        * @return - Categoria
+        *
+        * Ejemplo de JSON para crear una categoría:
+        *   {
+        *       "tipo": "Nueva categoría"
+        *   }
+    --------------------------------------------------------------------------------------------------------*/
     @PostMapping
     public Categoria createCategoria(@RequestBody Categoria categoria) {
         return categoriaService.save(categoria);
     }
 
+    /*--------------------------------------------------------------------------------------------------------
+     * deleteCategoriaById: Elimina una categoría por su id
+     *
+     * @param - Long id
+     * @return - void
+      --------------------------------------------------------------------------------------------------------*/
     @DeleteMapping("{id}")
     public void deleteCategoriaById(@PathVariable Long id) {
         categoriaService.deleteById(id);
     }
 
+    /*--------------------------------------------------------------------------------------------------------
+     * getCategoriasByTipo: Obtiene una lista de categorías por su tipo
+     *
+     * @param - String tipo
+     * @return - List<Categoria>
+      --------------------------------------------------------------------------------------------------------*/
     @GetMapping("tipo/{tipo}")
     public List<Categoria> getCategoriasByTipo(@PathVariable String tipo) {
         return categoriaService.findByTipo(tipo);
     }
 
 
-    /* ------ Ejemplo de JSON para actualizar una categoría ------
-    {
-    "tipo": "Nueva categoría actualizada"
-    }
-    */
+    /*--------------------------------------------------------------------------------------------------------
+     * updateCategoria: Actualiza una categoría por su id
+     *
+     * @param - Long id, Categoria categoriaData
+     * @return - ResponseEntity<Categoria>
+     *
+     * Ejemplo de JSON para actualizar una categoría:
+     *      {
+     *          "tipo": "Nueva categoría"
+     *      }
+      --------------------------------------------------------------------------------------------------------*/
     @PutMapping("{id}")
     public ResponseEntity<Categoria> updateCategoria(@PathVariable Long id, @RequestBody Categoria categoriaData) {
         Optional<Categoria> categoriaOptional = categoriaService.findByIdCategoria(id);

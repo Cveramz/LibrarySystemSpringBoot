@@ -1,11 +1,7 @@
 # LibrarySystem
 Proyecto semestral del ramo Diseño de Base de Datos.
 
-### FORMATO DE COMMITS (IMPORTANTE):
-
-```git commit -m ‘[Nombre del autor] - Actividad realizada’. ```
-
-### Integrantes:
+### Desarrollado por:
 - Nicolás Alarcón
 - Camila Carabajal
 - Catalina Jofré
